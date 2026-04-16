@@ -1,10 +1,46 @@
+:root {
+    --bg: #f0f0f0;
+    --container-bg: transparent;
+    --text: #222;
+    --ball-bg: #fff;
+    --ball-border: #ccc;
+    --btn-bg: #fff;
+    --btn-border: #999;
+    --btn-text: #222;
+}
+
+body.dark {
+    --bg: #1a1a2e;
+    --text: #e0e0e0;
+    --ball-bg: #2a2a4a;
+    --ball-border: #555;
+    --btn-bg: #2a2a4a;
+    --btn-border: #666;
+    --btn-text: #e0e0e0;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    font-size: 22px;
+    background: none;
+    border: 1px solid var(--ball-border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: border-color 0.3s;
 }
 
 .container {
@@ -21,17 +57,24 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--ball-bg);
+    border: 1px solid var(--ball-border);
+    color: var(--text);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     margin: 0 5px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 #generator-btn {
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
+    background-color: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    color: var(--btn-text);
+    border-radius: 6px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
