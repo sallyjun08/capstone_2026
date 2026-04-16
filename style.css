@@ -28,11 +28,13 @@ body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, var(--bg-from), var(--bg-to));
     color: var(--text);
     transition: background 0.4s, color 0.4s;
+    padding: 60px 20px;
 }
 
 /* ambient orbs */
@@ -290,6 +292,28 @@ h1 {
 #contact-link:hover {
     transform: translateY(-3px) scale(1.04);
     box-shadow: 0 8px 24px var(--card-shadow);
+}
+
+/* ── Comments section ── */
+#comments-section {
+    width: 100%;
+    max-width: 680px;
+    margin: 40px auto 60px;
+    padding: 36px 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 24px 64px var(--card-shadow);
+}
+
+#comments-section h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 24px;
+    letter-spacing: 0.3px;
 }
 
 /* ── Theme toggle ── */
