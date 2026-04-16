@@ -14,6 +14,14 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
+function getBallClass(num) {
+    if (num <= 10) return 'ball-yellow';
+    if (num <= 20) return 'ball-blue';
+    if (num <= 30) return 'ball-red';
+    if (num <= 40) return 'ball-gray';
+    return 'ball-green';
+}
+
 function generateLottoNumbers() {
     const numbers = new Set();
     while (numbers.size < 6) {
@@ -25,10 +33,31 @@ function generateLottoNumbers() {
 generatorBtn.addEventListener('click', () => {
     const numbers = generateLottoNumbers();
     lottoNumbersContainer.innerHTML = '';
-    numbers.forEach(number => {
-        const numberDiv = document.createElement('div');
-        numberDiv.classList.add('lotto-number');
-        numberDiv.textContent = number;
-        lottoNumbersContainer.appendChild(numberDiv);
+    generatorBtn.disabled = true;
+
+    numbers.forEach((finalNumber, index) => {
+        // Stagger each ball's appearance
+        setTimeout(() => {
+            const div = document.createElement('div');
+            div.classList.add('lotto-number', getBallClass(finalNumber));
+            div.textContent = Math.floor(Math.random() * 45) + 1;
+            lottoNumbersContainer.appendChild(div);
+
+            // Slot-machine spin: show random numbers, then reveal
+            let spins = 0;
+            const totalSpins = 7 + index * 2;
+            const interval = setInterval(() => {
+                div.textContent = Math.floor(Math.random() * 45) + 1;
+                spins++;
+                if (spins >= totalSpins) {
+                    clearInterval(interval);
+                    div.textContent = finalNumber;
+                }
+            }, 75);
+        }, index * 180);
     });
+
+    // Re-enable after all animations finish
+    const totalDuration = (numbers.length - 1) * 180 + (7 + (numbers.length - 1) * 2) * 75 + 200;
+    setTimeout(() => { generatorBtn.disabled = false; }, totalDuration);
 });
